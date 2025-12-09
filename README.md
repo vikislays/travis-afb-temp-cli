@@ -25,7 +25,7 @@ Temperature data(csv) are downloadble using station id:
 When you start the program, it asks:
 
 **What do you want to do?**
-1. View **daily temperatures for a month**
+1. View **daily temperatures for a month (2025 only)**
 2. View **monthly temperatures for a year**
 3. **Compare two years**
 
