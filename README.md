@@ -13,6 +13,12 @@ This is a student project focused on:
 We use Meteostat’s Bulk Data service:  
 https://dev.meteostat.net/bulk/
 
+Id for Travis AFB station is **74516**. This can be in json file from https://bulk.meteostat.net/v2/stations/full.json.gz.
+
+Temperature data(csv) are downloadble using station id: 
+1. https://data.meteostat.net/daily/{year}/{station}.csv.gz
+2. https://data.meteostat.net/monthly/{station}.csv.gz
+
 
 ## Features
 
