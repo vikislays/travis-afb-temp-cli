@@ -41,7 +41,6 @@ When you start the program, it asks:
 - **Min temperature**
 - **Max temperature**
 - **Average temperature**
-- **Median temperature**
 
 Example output:
 ```
@@ -51,7 +50,6 @@ Period: 2023-07
 Min: 12.3°C
 Max: 36.1°C
 Avg: 24.8°C
-Median: 24.5°C
 ```
 
 ---
@@ -67,7 +65,6 @@ Median: 24.5°C
 - **Min temperature**
 - **Max temperature**
 - **Average temperature**
-- **Median temperature**
 
 ### B) Text table of monthly averages
 A simple console table replaces charts.
