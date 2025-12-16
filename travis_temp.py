@@ -42,6 +42,54 @@ user_input = input("Choose one of the three options:\n" \
 if user_input == "1":
     month = int(input("Enter month (1-12): "))
 
+    daily_temps = []
+
+    min_daily_temp = None
+    min_day = None
+
+    max_daily_temp = None
+    max_day = None
+
+    with open('74516_daily_2025.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        for row in reader:
+            try:
+                file_month = int(row[1])
+                file_day = int(row[2])
+                file_daily_temp = float(row[3])
+                if file_month == month:
+                    daily_temps.append(file_daily_temp)
+                    
+                    if min_daily_temp == None:
+                        min_daily_temp = file_daily_temp
+                        min_day = file_day
+                    
+                    else:
+                        if file_daily_temp < min_daily_temp:
+                            min_daily_temp = file_daily_temp
+                            min_day = file_day
+
+                    if max_daily_temp == None:
+                        max_daily_temp = file_daily_temp
+                        max_day = file_day
+                    
+                    else:
+                        if file_daily_temp > max_daily_temp:
+                            max_daily_temp = file_daily_temp
+                            max_day = file_day
+
+            except ValueError:
+                pass
+
+        month_average = round(sum(daily_temps)/len(daily_temps), 1)
+        print("\n")
+        print("Travis AFB - Daily Summary")
+        print("Year: 2025")
+        print(f"Min: {get_month_name(month)} {min_day}, {min_daily_temp}°C")
+        print(f"Max: {get_month_name(month)} {max_day}, {max_daily_temp}°C")
+        print(f"Avg: {month_average}°C")
+        print("\n")
+
 elif user_input == "2":
     year = int(input("Enter year (e.g. 2025): "))
 
@@ -96,6 +144,7 @@ elif user_input == "2":
         print(f"Lowest temperature in {year} was: {min_temp}°C in {get_month_name(min_month)}.")
         print(f"Highest temperature in {year} was: {max_temp}°C in {get_month_name(max_month)}.")
         print(f"Average temperature in {year} was: {year_average}°C")
+        print("\n")
 
 elif user_input == "3":
     first_year = int(input("Enter the first year: "))
@@ -108,14 +157,4 @@ elif user_input == "3":
 
 
 else:
-    print("Please choose one of the options.")
-
-def monthly_temps():
-    pass
-
-# What do you want to do?
-
-# View daily temperatures for a month (2025 only)
-# View monthly temperatures for a year
-# Compare two years
-
+    print("Invalid option selected.")
