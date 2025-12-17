@@ -149,12 +149,45 @@ elif user_input == "2":
 elif user_input == "3":
     first_year = int(input("Enter the first year: "))
     second_year = int(input("Enter the second year: "))
+    
+    difference = None
+    first_year_temp = []
+    second_year_temp = []
+    difference_in_temps = []
+    month_temp_first_year = []
+    month_temp_second_year = [] 
 
-    # with open('74516_monthly.csv', newline='') as csvfile:
-    #     reader = csv.reader(csvfile, delimiter=',')
+    with open('74516_monthly.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        for row in reader:
+            try:
+                file_year = int(row[0])
+                file_month = int(row[1])
+                file_temp = float(row[2])
+                
+                if first_year == file_year:
+                    first_year_temp.append(file_temp)
+                    month_temp_first_year.append(file_month)
 
-    #     for row in reader:
+                if second_year == file_year:
+                    second_year_temp.append(file_temp)
+                    month_temp_second_year.append(file_month)
 
+            except ValueError:
+                pass
 
+    if len(first_year_temp) == len(second_year_temp) and len(first_year_temp) > 0:
+        for temp1, temp2 in zip(first_year_temp, second_year_temp):
+            difference = temp2 - temp1
+            difference_in_temps.append(round(difference, 1))
+
+        print(f"\nTRAVIS AFIB - Monthly Avg Comparison: {first_year} vs {second_year}")
+        print(f"Month\t|  {first_year}\t| {second_year}\t| Diff")
+        print("-" * 35)
+
+        for month_index in month_temp_first_year:
+            print(f"{get_month_name(month_index)}\t|  {first_year_temp[month_index - 1]}\t| {second_year_temp[month_index - 1]}\t| {difference_in_temps[month_index - 1]}")
+    else:
+        print("Error: The data for the two years could not be properly compared (e.g., missing months).") 
 else:
     print("Invalid option selected.")
